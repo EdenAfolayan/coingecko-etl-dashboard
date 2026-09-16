@@ -4,7 +4,15 @@ import psycopg2
 import streamlit as st
 
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL")
+
+def get_secret(key):
+   
+    if key in st.secrets:
+        return st.secrets[key]
+    
+    return os.getenv(key)
+
+DATABASE_URL = get_secret("DATABASE_URL")
 
 @st.cache_resource
 def get_connection():
