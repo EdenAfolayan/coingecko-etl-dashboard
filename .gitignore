@@ -1,0 +1,16 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+# secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# streamlit
+.streamlit/secrets.toml
+
+# os junk
+.DS_Store
+Thumbs.db
