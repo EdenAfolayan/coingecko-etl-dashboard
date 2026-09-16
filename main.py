@@ -8,7 +8,7 @@ from backfill import insert_backfill_rows
 
 load_dotenv()
 
-api_key = os.getenv("api_key")
+api_key = os.getenv("API_KEY")
 
 client = Coingecko(
     demo_api_key=api_key,
