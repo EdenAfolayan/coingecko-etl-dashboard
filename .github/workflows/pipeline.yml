@@ -22,6 +22,6 @@ jobs:
 
       - name: Run pipeline
         env:
-          api_key: ${{ secrets.API_KEY }}
+          API_KEY: ${{ secrets.API_KEY }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: python main.py
