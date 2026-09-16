@@ -26,7 +26,7 @@ columns = [
     "market_cap_rank", "pulled_at"
 ]
 df = pd.DataFrame(top_100_latest(), columns=columns)
-df = df.sort_values("market_cap_rank")
+df = df.sort_values("market_cap_rank").head(100)
 
 numeric_cols = ["price_usd", "market_cap_usd", "volume_24h_usd", "price_change_24h_pct"]
 df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
@@ -61,6 +61,7 @@ st.divider()
 
 # --- Main table ---
 st.subheader("Top 100 Coins")
+st.caption("Click check box to open coin detail page !")
 event = st.dataframe(
     df[["image_url", "name", "symbol", "price_usd", "price_change_24h_pct", "market_cap_usd"]],
     column_config={
