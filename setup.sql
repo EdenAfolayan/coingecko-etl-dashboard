@@ -1,8 +1,6 @@
--- =========================================
 -- COINS: reference/dimension table
 -- One row per coin, ever seen in top 100
 -- Grows over time, rarely updated otherwise
--- =========================================
 CREATE TABLE coins (
     coin_id     VARCHAR(100)  PRIMARY KEY,   -- CoinGecko's id, e.g. 'bitcoin'
     symbol      VARCHAR(20)  NOT NULL,
@@ -12,11 +10,10 @@ CREATE TABLE coins (
     last_seen   TIMESTAMPTZ  NOT NULL DEFAULT now()
 );
 
--- =========================================
 -- COIN_MARKET_DATA: fact table
 -- One row per coin per timestamp
 -- Fed by BOTH live pulls and backfill
--- =========================================
+
 CREATE TABLE coin_market_data (
     id                     BIGSERIAL PRIMARY KEY,
     coin_id                VARCHAR(100) NOT NULL REFERENCES coins(coin_id),
@@ -34,11 +31,10 @@ CREATE TABLE coin_market_data (
     UNIQUE (coin_id, pulled_at, source)
 );
 
--- =========================================
 -- INDEXES
 -- Your line-chart query filters by coin_id
 -- and sorts/ranges by pulled_at — this is
 -- exactly what this composite index speeds up
--- =========================================
+
 CREATE INDEX idx_market_data_coin_time
     ON coin_market_data (coin_id, pulled_at);
