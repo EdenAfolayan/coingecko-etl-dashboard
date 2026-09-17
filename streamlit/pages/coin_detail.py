@@ -32,7 +32,7 @@ with col3:
 st.divider()
 
 
-history_rows = single_coin_history(coin_id)  # reuse your existing function
+history_rows = single_coin_history(coin_id) 
 history_df = pd.DataFrame(history_rows, columns=["price_usd", "pulled_at", "source"])
 history_df["price_usd"] = pd.to_numeric(history_df["price_usd"], errors="coerce")
 
