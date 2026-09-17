@@ -30,31 +30,7 @@ Postgres (Neon) — two-table star schema
 
 ### Entity-relationship diagram
 
-```mermaid
-erDiagram
-    coins ||--o{ coin_market_data : "has many"
-
-    coins {
-        varchar coin_id PK
-        varchar symbol
-        varchar name
-        text image_url
-        timestamptz first_seen
-        timestamptz last_seen
-    }
-
-    coin_market_data {
-        bigserial id PK
-        varchar coin_id FK
-        numeric price_usd
-        numeric market_cap_usd
-        numeric volume_24h_usd
-        numeric price_change_24h_pct
-        int market_cap_rank
-        timestamptz pulled_at
-        varchar source
-    }
-```
+![ERD_Diagram](img\erd_diagram.png)
 
 ### Why two tables, not one
 
