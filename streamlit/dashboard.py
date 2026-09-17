@@ -33,6 +33,7 @@ df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
 
 # --- Top summary row ---
 st.title("Crypto Prices by Market Cap")
+st.subheader("Market Summary")
 
 total_market_cap = df["market_cap_usd"].sum()
 gainer = df.loc[df["price_change_24h_pct"].idxmax()]
@@ -59,6 +60,36 @@ with col3:
 
 st.divider()
 
+col1, col2 = st.columns(2)
+with col1:
+    st.subheader("Top Gainers")
+    gainers = (df[["image_url", "name", "symbol", "price_usd", "price_change_24h_pct"]].sort_values(by="price_change_24h_pct",ascending=False).head(3))
+    st.dataframe(
+        gainers.style.set_properties(subset=["price_change_24h_pct"], **{"color": "green"}),
+        column_config={
+                "image_url": st.column_config.ImageColumn("Logo"),
+                "price_usd": st.column_config.NumberColumn("Price", format="$%.2f"),
+                "price_change_24h_pct": st.column_config.NumberColumn("24h %", format="%.1f%%"),
+        },
+        hide_index=True,
+        use_container_width=True
+)
+
+with col2:
+    st.subheader("Top Losers")
+    losers = (df[["image_url", "name", "symbol", "price_usd", "price_change_24h_pct"]].sort_values(by="price_change_24h_pct", ascending=True).head(3))
+    st.dataframe(
+        losers.style.set_properties(subset=["price_change_24h_pct"], **{"color": "red"}),
+        column_config={
+                "image_url": st.column_config.ImageColumn("Logo"),
+                "price_usd": st.column_config.NumberColumn("Price", format="$%.2f"),
+                "price_change_24h_pct": st.column_config.NumberColumn("24h %", format="%.1f%%"),
+        },
+        hide_index=True,
+        use_container_width=True
+)
+
+st.divider()
 # --- Main table ---
 st.subheader("Top 100 Coins")
 st.caption("Click check box to open coin detail page !")

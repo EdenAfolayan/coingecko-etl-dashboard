@@ -6,10 +6,11 @@ import streamlit as st
 load_dotenv()
 
 def get_secret(key):
-   
-    if key in st.secrets:
-        return st.secrets[key]
-    
+    try:
+        if key in st.secrets:
+            return st.secrets[key]
+    except Exception:
+        pass
     return os.getenv(key)
 
 DATABASE_URL = get_secret("DATABASE_URL")
@@ -29,7 +30,7 @@ def get_live_connection():
         conn = get_connection()
     return conn
 
-
+st.cache_data(ttl=60)
 def top_100_latest():
     conn = get_live_connection()
     cur = conn.cursor()
@@ -56,7 +57,7 @@ def top_100_latest():
 
     return rows
 
-
+st.cache_data(ttl=60)
 def single_coin_history(selected_coin):
     conn = get_live_connection()
     cur = conn.cursor()
