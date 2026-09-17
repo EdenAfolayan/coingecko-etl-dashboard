@@ -30,7 +30,7 @@ Postgres (Neon) — two-table star schema
 
 ### Entity-relationship diagram
 
-![ERD_Diagram](img\erd_diagram.png)
+![ERD_Diagram](img/erd_diagram.pngerd_diagram.png)
 
 ### Why two tables, not one
 
@@ -77,7 +77,7 @@ The first working dashboard was built in Power BI, connected to Neon via its Pos
 - **"Correct by coincidence" measures.** With only one live snapshot per coin in the data, `AVERAGE`, `MAX`, and "latest" all produced identical results — masking bugs that only became visible once multiple live snapshots existed. Every "current value" measure had to be rewritten to explicitly find the latest `pulled_at` per coin, not aggregate across all history.
 - **Free-tier hosting doesn't support this project's goals.** Power BI's Publish to Web requires a work/school account (blocking a personal-account user from publishing at all) and only supports static Import-mode data, not a live connection. Scheduled refresh against an external Postgres source requires a paid Pro license. There's no free-tier combination of "public," "no viewer sign-in," and "live data" available in Power BI — which is what motivated the move to Streamlit.
 
-- ![PowerBIDashboard](img\powerbi-dashboard.png)
+- ![PowerBIDashboard](img/powerbi-dashboard.png)
 
 ---
 
