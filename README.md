@@ -30,7 +30,7 @@ Postgres (Neon) — two-table star schema
 
 ### Entity-relationship diagram
 
-![ERD_Diagram](img/erd_diagram.pngerd_diagram.png)
+![ERD_Diagram](img/erd_diagram.png)
 
 ### Why two tables, not one
 
