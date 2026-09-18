@@ -25,8 +25,14 @@ columns = [
     "market_cap_usd", "volume_24h_usd", "price_change_24h_pct",
     "market_cap_rank", "pulled_at"
 ]
+
 df = pd.DataFrame(top_100_latest(), columns=columns)
-df = df.sort_values("market_cap_rank").head(100)
+df["pulled_at"] = pd.to_datetime(df["pulled_at"])
+
+latest_run_time = df["pulled_at"].max()
+df = df[df["pulled_at"] >= latest_run_time - pd.Timedelta(hours=1)]
+
+df = df.sort_values("market_cap_rank")
 
 numeric_cols = ["price_usd", "market_cap_usd", "volume_24h_usd", "price_change_24h_pct"]
 df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
