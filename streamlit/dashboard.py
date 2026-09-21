@@ -3,7 +3,7 @@ import pandas as pd
 from db import top_100_latest
 
 
-
+st.set_page_config(page_title="Crypto Dashboard", layout="wide")
 # conn = psycopg2.connect(DATABASE_URL)
 # cur = conn.cursor()
 

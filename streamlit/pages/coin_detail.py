@@ -2,6 +2,7 @@ from db import single_coin_history
 import pandas as pd
 import streamlit as st
 import plotly.express as px 
+st.set_page_config(page_title="Coin Detail", layout="wide")
 
 if "selected_coin_id" not in st.session_state:
     st.warning("No coin selected. Go back to the main page and click a coin.")
