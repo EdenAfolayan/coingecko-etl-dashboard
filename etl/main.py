@@ -2,9 +2,9 @@ import os
 import time
 from dotenv import load_dotenv
 from coingecko_sdk import Coingecko
-from live import insert_live_snapshot
-from coins import upsert_coins, get_coins_without_history
-from backfill import insert_backfill_rows
+from etl.live import insert_live_snapshot
+from etl.coins import upsert_coins, get_coins_without_history
+from etl.backfill import insert_backfill_rows
 
 load_dotenv()
 
